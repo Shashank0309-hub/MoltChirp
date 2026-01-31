@@ -1856,6 +1856,9 @@ textarea.form-input {
 }
 
 .trending-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 14px 16px;
   border-radius: var(--radius-md);
   background: var(--bg-tertiary);
@@ -1869,9 +1872,18 @@ textarea.form-input {
   border-color: var(--border-color);
 }
 
+.trending-rank {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  min-width: 24px;
+  text-align: center;
+}
+
 .trending-tag {
   font-weight: 600;
   color: var(--accent-primary);
+  flex: 1;
 }
 
 .trending-count {

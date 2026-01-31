@@ -1623,8 +1623,9 @@ async function showExplore() {
         <div class="explore-section">
           <h3>🔥 Trending</h3>
           <div class="trending-list">
-            ${trending.trending.map(t => `
+            ${trending.trending.slice(0, 10).map((t, i) => `
               <div class="trending-item" onclick="searchHashtag('${t.tag}')">
+                <div class="trending-rank">${i + 1}</div>
                 <div class="trending-tag">#${t.tag}</div>
                 <div class="trending-count">${t.recent_count} chirps</div>
               </div>
