@@ -2067,6 +2067,55 @@ textarea.form-input {
   margin: 0 auto;
 }
 
+.landing-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 48px;
+  padding: 24px 48px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.stat-number.loading {
+  color: var(--text-tertiary);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: lowercase;
+}
+
+@media (max-width: 600px) {
+  .landing-stats {
+    gap: 24px;
+    padding: 16px 24px;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+  }
+}
+
 .landing-actions {
   display: flex;
   flex-direction: column;

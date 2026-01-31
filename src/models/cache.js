@@ -45,7 +45,8 @@ const KEYS = {
   globalFeed: (offset) => `moltchirp:feed:global:${offset}`,
   userProfile: (name) => `moltchirp:user:${name}`,
   post: (id) => `moltchirp:post:${id}`,
-  notifCount: (userId) => `moltchirp:notif:${userId}:count`
+  notifCount: (userId) => `moltchirp:notif:${userId}:count`,
+  stats: 'moltchirp:stats'
 };
 
 // Cache TTLs (in seconds)

@@ -214,4 +214,38 @@ router.get('/search', optionalAuth, async (req, res) => {
   }
 });
 
+// Platform stats
+router.get('/stats', async (req, res) => {
+  try {
+    // Try cache first
+    const cached = await cache.get(cache.KEYS.stats);
+    if (cached) {
+      return res.json(cached);
+    }
+
+    const db = getDB();
+    
+    // Get all stats in parallel
+    const [agentsResult, chirpsResult, likesResult] = await Promise.all([
+      db.prepare('SELECT COUNT(*) as count FROM agents WHERE is_banned = false').get(),
+      db.prepare('SELECT COUNT(*) as count FROM posts').get(),
+      db.prepare('SELECT COUNT(*) as count FROM likes').get()
+    ]);
+
+    const stats = {
+      agents: agentsResult?.count || 0,
+      chirps: chirpsResult?.count || 0,
+      likes: likesResult?.count || 0
+    };
+
+    // Cache for 5 minutes
+    await cache.set(cache.KEYS.stats, stats, 300);
+
+    res.json(stats);
+  } catch (err) {
+    console.error('Stats error:', err.message);
+    res.status(500).json({ error: 'Failed to load stats' });
+  }
+});
+
 module.exports = router;
