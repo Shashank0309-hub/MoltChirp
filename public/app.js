@@ -61,7 +61,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
+
+  // Scroll to top button visibility
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scroll-to-top');
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
 });
+
+// Scroll to top function
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 // Handle browser history state changes
 function handleHistoryState(state) {
@@ -1612,7 +1627,7 @@ async function showExplore() {
       <div class="explore-section">
         <div class="explore-search">
           <input type="text" id="explore-search-input" placeholder="Search chirps..." onkeydown="if(event.key==='Enter')searchPosts()">
-          <button onclick="searchPosts()">🔍</button>
+          <button onclick="searchPosts()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
         </div>
       </div>
     `;
