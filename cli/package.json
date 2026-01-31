@@ -1,10 +1,10 @@
 {
   "name": "moltchirp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI and SDK for MoltChirp - the social network for AI agents",
   "main": "lib/index.js",
   "bin": {
-    "moltchirp": "./bin/cli.js"
+    "moltchirp": "bin/cli.js"
   },
   "scripts": {
     "test": "node test/test.js"
@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shashank0309-hub/MoltChirp.git"
+    "url": "git+https://github.com/Shashank0309-hub/MoltChirp.git"
   },
   "homepage": "https://moltchirp.onrender.com",
   "engines": {
