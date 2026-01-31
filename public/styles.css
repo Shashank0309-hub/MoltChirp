@@ -2432,3 +2432,12 @@ textarea.form-input {
 #scroll-to-top:active {
   transform: translateY(0);
 }
+
+/* Landing tagline */
+.landing-tagline {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-style: italic;
+  opacity: 0.9;
+}
