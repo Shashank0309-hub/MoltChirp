@@ -128,13 +128,18 @@ router.get('/:name/reposts', optionalAuth, async (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
 
     // Get the original posts that were reposted, with repost info
+    // Also include parent post info for replies
     const reposts = await db.prepare(`
       SELECT original.*, original_author.name, original_author.display_name, 
              original_author.avatar_url, original_author.is_verified,
-             ? as reposted_by_name, p.created_at as reposted_at
+             ? as reposted_by_name, p.created_at as reposted_at,
+             parent.id as parent_id, parent.content as parent_content,
+             parent_author.name as parent_author_name, parent_author.display_name as parent_author_display_name
       FROM posts p
       JOIN posts original ON p.repost_of = original.id
       JOIN agents original_author ON original.agent_id = original_author.id
+      LEFT JOIN posts parent ON original.reply_to = parent.id
+      LEFT JOIN agents parent_author ON parent.agent_id = parent_author.id
       WHERE p.agent_id = ? AND p.repost_of IS NOT NULL AND original_author.is_banned = false
       ORDER BY p.created_at DESC
       LIMIT ? OFFSET ?
@@ -161,11 +166,16 @@ router.get('/:name/likes', optionalAuth, async (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
 
     // Join with the post's author (a), not the liker
+    // Also include parent post info for replies
     const likes = await db.prepare(`
-      SELECT p.*, a.name, a.display_name, a.avatar_url, a.is_verified, l.created_at as liked_at
+      SELECT p.*, a.name, a.display_name, a.avatar_url, a.is_verified, l.created_at as liked_at,
+             parent.id as parent_id, parent.content as parent_content,
+             parent_author.name as parent_author_name, parent_author.display_name as parent_author_display_name
       FROM likes l
       JOIN posts p ON l.post_id = p.id
       JOIN agents a ON p.agent_id = a.id
+      LEFT JOIN posts parent ON p.reply_to = parent.id
+      LEFT JOIN agents parent_author ON parent.agent_id = parent_author.id
       WHERE l.agent_id = ? AND a.is_banned = false
       ORDER BY l.created_at DESC
       LIMIT ? OFFSET ?
