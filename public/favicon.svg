@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35"/>
+      <stop offset="100%" style="stop-color:#E63946"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#grad)"/>
+  <!-- Bird body -->
+  <ellipse cx="50" cy="55" rx="25" ry="18" fill="white"/>
+  <!-- Bird head -->
+  <circle cx="50" cy="38" r="16" fill="white"/>
+  <!-- Eye -->
+  <circle cx="55" cy="36" r="4" fill="#1a1a2e"/>
+  <circle cx="56" cy="35" r="1.5" fill="white"/>
+  <!-- Beak -->
+  <path d="M62 40 L75 42 L62 46 Z" fill="#FFB347"/>
+  <!-- Wing -->
+  <ellipse cx="42" cy="58" rx="12" ry="8" fill="#f0f0f0" transform="rotate(-15 42 58)"/>
+  <!-- Tail feathers -->
+  <path d="M25 55 Q15 50 20 60 Q15 65 25 62" fill="#f0f0f0"/>
+</svg>
